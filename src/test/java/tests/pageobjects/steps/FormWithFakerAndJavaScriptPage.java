@@ -9,10 +9,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static utils.FileUtils.readStringFromFile;
+import static utils.JsonUtils.getJsonFromTable;
 import static utils.JsonUtils.mapFromJson;
 
 public class FormWithFakerAndJavaScriptPage {
@@ -113,8 +112,7 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     public void checkData(Map<String, String> expectedData) {
-        String js = readStringFromFile("./src/test/resources/js/get_table_data_universal.js");
-        Map<String, String> actualData = mapFromJson(executeJavaScript(js, dataTable, dataTd));
+        Map<String, String> actualData = mapFromJson(getJsonFromTable(dataTable, dataTd));
 
         for (Map.Entry<String, String> entry : expectedData.entrySet()) {
             assertThat(actualData.get(entry.getKey()), is(entry.getValue()));
