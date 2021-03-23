@@ -25,10 +25,13 @@ public class FormWithFakerAndJavaScriptTests {
 
     static List<String> statesList = new ArrayList<>(statesAndCities.keySet());
 
-    static String state = statesList.get(faker.random().nextInt(statesList.size())),
+    static String
+            state = statesList.get(faker.random().nextInt(statesList.size())),
             city = statesAndCities.get(state)[faker.random().nextInt(statesAndCities.get(state).length)];
 
-    static String[] subjects = {"English", "Maths", "Arts", "Accounting"}, hobbies = {"Sports", "Music"};
+    static String[]
+            subjects = {"English", "Maths", "Arts", "Accounting"},
+            hobbies = {"Sports", "Music"};
 
     static Map<String, String> userData = new HashMap<String, String>() {{
         put("First Name", faker.name().firstName());
