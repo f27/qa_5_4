@@ -29,7 +29,16 @@ public class TableUtils {
         return executeJavaScript(js, trSelector, tdSelector);
     }
 
+    public static String getJsonFromTable(String trSelector, String tdSelector, int keyTd, int valueTd) {
+        String js = readStringFromFile("./src/test/resources/js/get_table_data_universal.js");
+        return executeJavaScript(js, trSelector, tdSelector, keyTd, valueTd);
+    }
+
     public static Map<String, String> getMapFromTable(String trSelector, String tdSelector) {
         return mapFromJson(getJsonFromTable(trSelector, tdSelector));
+    }
+
+    public static Map<String, String> getMapFromTable(String trSelector, String tdSelector, int keyTd, int valueTd) {
+        return mapFromJson(getJsonFromTable(trSelector, tdSelector, keyTd, valueTd));
     }
 }
