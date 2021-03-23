@@ -11,4 +11,4 @@ return JSON.stringify(jsonObject);
 }
 var trArg = arguments[0]; var tdArg = arguments[1];
 var keyTd = arguments[2]; var valueTd = arguments[3];
-return getDataFromTable(trArg, tdArg);
+return getDataFromTable(trArg, tdArg, keyTd, valueTd);
