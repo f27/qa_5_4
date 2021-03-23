@@ -1,12 +1,11 @@
 function getDataFromTable(table, td){
 jsonObject = {};
-$(table).each(function(i, element) {
-    key =  $(element).find(td).first().text();
-    value = $(element).find(td).last().text()
-    jsonObject[key] = value;
-});
+Array.from(document.querySelectorAll(table)).forEach(e =>{
+        tds =  e.querySelectorAll(td);
+        jsonObject[tds[0].innerHTML] = tds[1].innerHTML;
+    }
+);
 return JSON.stringify(jsonObject);
 }
-var tableArg = arguments[0];
-var tdArg = arguments[1];
+var tableArg = arguments[0]; var tdArg = arguments[1];
 return getDataFromTable(tableArg, tdArg);
