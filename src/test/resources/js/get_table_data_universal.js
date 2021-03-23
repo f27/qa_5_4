@@ -2,7 +2,9 @@ function getDataFromTable(tr, td){
 jsonObject = {};
 Array.from(document.querySelectorAll(tr)).forEach(e =>{
         tds =  e.querySelectorAll(td);
-        jsonObject[tds[0].innerHTML] = tds[1].innerHTML;
+        if (typeof tds[0] != "undefined") {
+            jsonObject[tds[0].innerHTML] = tds[1].innerHTML;
+        }
     }
 );
 return JSON.stringify(jsonObject);
