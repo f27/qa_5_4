@@ -13,8 +13,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
-import static utils.FileUtils.readStringFromFile;
+import static utils.JsonUtils.getJsonFromTable;
 import static utils.JsonUtils.mapFromJson;
 
 public class FormWithFakerAndJavaScriptPage {
@@ -25,7 +24,7 @@ public class FormWithFakerAndJavaScriptPage {
             email = $("#userEmail"),
             gender = $("#genterWrapper"),
             mobile = $("#userNumber"),
-            datePicker =  $("#dateOfBirthInput"),
+            datePicker = $("#dateOfBirthInput"),
             yearField = $(".react-datepicker__year-select"),
             monthField = $(".react-datepicker__month-select"),
             subjectsInput = $("#subjectsInput"),
@@ -91,8 +90,8 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     public static Stream<Arguments> getTableDataAsStream() {
-        String js = readStringFromFile("./src/test/resources/js/get_table_data_universal.js");
-        return createList(mapFromJson(executeJavaScript(js, dataTable, dataTd))).stream();
+
+        return createList(mapFromJson(getJsonFromTable(dataTable, dataTd))).stream();
     }
 
     private static List<Arguments> createList(Map<String, String> data) {

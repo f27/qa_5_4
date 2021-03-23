@@ -6,6 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static utils.FileUtils.readStringFromFile;
+
 
 public class JsonUtils {
     public static Map<String, String> mapFromJson(String json) {
@@ -19,5 +22,10 @@ public class JsonUtils {
             e.printStackTrace();
         }
         return data;
+    }
+
+    public static String getJsonFromTable(String trSelector, String tdSelector) {
+        String js = readStringFromFile("./src/test/resources/js/get_table_data_universal.js");
+        return executeJavaScript(js, trSelector, tdSelector);
     }
 }
