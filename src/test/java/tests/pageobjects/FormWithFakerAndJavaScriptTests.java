@@ -13,8 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.codeborne.selenide.Selenide.executeJavaScript;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static utils.FileUtils.readStringFromFile;
@@ -89,16 +88,8 @@ public class FormWithFakerAndJavaScriptTests {
     void formFillTestWithFaker(String key, String actualValue) {
         assertThat(expectedData.get(key), is(actualValue));
     }
-
     public static Stream<Arguments> getTableDataAsStream() {
-        String js = readStringFromFile("./src/test/resources/js/get_table_data.js");
-        return createList(mapFromJson(executeJavaScript(js))).stream();
+        return FormWithFakerAndJavaScriptPage.getTableDataAsStream();
     }
 
-    private static List<Arguments> createList(Map<String, String> data) {
-        return data.entrySet()
-                .stream()
-                .map(e -> Arguments.of(e.getKey(), e.getValue()))
-                .collect(Collectors.toList());
-    }
 }

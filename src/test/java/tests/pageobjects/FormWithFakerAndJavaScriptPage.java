@@ -2,13 +2,20 @@ package tests.pageobjects;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.params.provider.Arguments;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static utils.FileUtils.readStringFromFile;
+import static utils.JsonUtils.mapFromJson;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
@@ -31,7 +38,10 @@ public class FormWithFakerAndJavaScriptPage {
             submit = $("#submit"),
             modal = $(".modal-content"),
             closeModal = $("#closeLargeModal");
-    private static final String classOfDay = ".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)";
+    private static final String
+            classOfDay = ".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)",
+            dataTable = ".table-responsive tbody tr",
+            dataTd = "td";
 
 
     public void fillForm(Map<String, String> userData) {
@@ -78,5 +88,17 @@ public class FormWithFakerAndJavaScriptPage {
     public void closeModal() {
         closeModal.scrollIntoView(true).click();
         modal.shouldNotBe(visible);
+    }
+
+    public static Stream<Arguments> getTableDataAsStream() {
+        String js = readStringFromFile("./src/test/resources/js/get_table_data_universal.js");
+        return createList(mapFromJson(executeJavaScript(js, dataTable, dataTd))).stream();
+    }
+
+    private static List<Arguments> createList(Map<String, String> data) {
+        return data.entrySet()
+                .stream()
+                .map(e -> Arguments.of(e.getKey(), e.getValue()))
+                .collect(Collectors.toList());
     }
 }
