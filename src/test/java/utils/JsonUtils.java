@@ -11,7 +11,7 @@ import static utils.FileUtils.readStringFromFile;
 
 
 public class JsonUtils {
-    public static Map<String, String> mapFromJson(String json) {
+    private static Map<String, String> mapFromJson(String json) {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> data = null;
         try {

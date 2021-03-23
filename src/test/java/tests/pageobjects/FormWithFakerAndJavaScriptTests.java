@@ -10,14 +10,11 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static utils.FileUtils.readStringFromFile;
-import static utils.JsonUtils.mapFromJson;
 
 public class FormWithFakerAndJavaScriptTests {
     static FormWithFakerAndJavaScriptPage formWithFakerAndJavaScriptPage;
@@ -88,6 +85,7 @@ public class FormWithFakerAndJavaScriptTests {
     void formFillTestWithFaker(String key, String actualValue) {
         assertThat(expectedData.get(key), is(actualValue));
     }
+
     public static Stream<Arguments> getTableDataAsStream() {
         return FormWithFakerAndJavaScriptPage.getTableDataAsStream();
     }
