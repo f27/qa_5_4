@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static utils.JsonUtils.getMapFromTable;
+import static utils.TableUtils.getMapFromTable;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
