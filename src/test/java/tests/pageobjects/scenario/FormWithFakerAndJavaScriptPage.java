@@ -11,8 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static utils.JsonUtils.getJsonFromTable;
-import static utils.JsonUtils.mapFromJson;
+import static utils.JsonUtils.getMapFromTable;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
@@ -72,7 +71,7 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     public void checkData(Map<String, String> expectedData) {
-        Map<String, String> actualData = mapFromJson(getJsonFromTable(dataTable, dataTd));
+        Map<String, String> actualData = getMapFromTable(dataTable, dataTd);
 
         for (Map.Entry<String, String> entry : expectedData.entrySet()) {
             assertThat(actualData.get(entry.getKey()), is(entry.getValue()));
