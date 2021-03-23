@@ -13,8 +13,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static utils.JsonUtils.getJsonFromTable;
-import static utils.JsonUtils.mapFromJson;
+import static utils.JsonUtils.getMapFromTable;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
@@ -90,7 +89,7 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     public static Stream<Arguments> getTableDataAsStream() {
-        return createList(mapFromJson(getJsonFromTable(dataTable, dataTd))).stream();
+        return createList(getMapFromTable(dataTable, dataTd)).stream();
     }
 
     private static List<Arguments> createList(Map<String, String> data) {
