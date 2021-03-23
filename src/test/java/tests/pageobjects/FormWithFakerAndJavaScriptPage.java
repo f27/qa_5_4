@@ -90,7 +90,6 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     public static Stream<Arguments> getTableDataAsStream() {
-
         return createList(mapFromJson(getJsonFromTable(dataTable, dataTd))).stream();
     }
 
