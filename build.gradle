@@ -13,7 +13,6 @@ def selenideVersion = "5.19.0",
     slf4jVersion = "1.7.29",
     junitVersion = "5.7.1"
 
-
 dependencies {
     testImplementation(
             "com.codeborne:selenide:$selenideVersion",
