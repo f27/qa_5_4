@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static utils.FileUtils.readStringFromFile;
 
 
-public class TableHelper {
+public class TableHelpers {
     private static Map<String, String> mapFromJson(String json) {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> data = null;
