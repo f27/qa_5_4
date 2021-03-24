@@ -1,4 +1,4 @@
-package tests.pageobjects;
+package tests.pageobjects.parametrized.pages;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;

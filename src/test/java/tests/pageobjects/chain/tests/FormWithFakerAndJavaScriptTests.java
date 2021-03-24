@@ -1,9 +1,10 @@
-package tests.pageobjects.steps;
+package tests.pageobjects.chain.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import tests.pageobjects.chain.pages.FormWithFakerAndJavaScriptPage;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -72,22 +73,10 @@ public class FormWithFakerAndJavaScriptTests {
 
     @Test
     void formWithFakerAndJavaScriptTests() {
-        formWithFakerAndJavaScriptPage = open("https://demoqa.com/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
-        formWithFakerAndJavaScriptPage.checkPageIsLoaded(userData.get("Form Title"));
-        formWithFakerAndJavaScriptPage.fillFirstName(userData.get("First Name"));
-        formWithFakerAndJavaScriptPage.fillLastName(userData.get("Last Name"));
-        formWithFakerAndJavaScriptPage.fillEmail(userData.get("Email"));
-        formWithFakerAndJavaScriptPage.fillGender(userData.get("Gender"));
-        formWithFakerAndJavaScriptPage.fillMobile(userData.get("Mobile"));
-        formWithFakerAndJavaScriptPage.fillDateOfBirthday(userData.get("Year Of Birth"), userData.get("Month Of Birth"), userData.get("Day Of Birth"));
-        formWithFakerAndJavaScriptPage.fillSubjects(userData.get("Subjects"));
-        formWithFakerAndJavaScriptPage.fillHobbies(userData.get("Hobbies"));
-        formWithFakerAndJavaScriptPage.fillPicture(userData.get("Picture"));
-        formWithFakerAndJavaScriptPage.fillAddress(userData.get("Address"));
-        formWithFakerAndJavaScriptPage.fillState(userData.get("State"));
-        formWithFakerAndJavaScriptPage.fillCity(userData.get("City"));
-        formWithFakerAndJavaScriptPage.clickSubmit();
-        formWithFakerAndJavaScriptPage.checkData(expectedData);
-        formWithFakerAndJavaScriptPage.closeModal();
+        formWithFakerAndJavaScriptPage =
+                open("https://demoqa.com/automation-practice-form", FormWithFakerAndJavaScriptPage.class)
+                        .fillForm(userData)
+                        .checkData(expectedData)
+                        .closeModal();
     }
 }

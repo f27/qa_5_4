@@ -1,4 +1,4 @@
-package tests.pageobjects.steps;
+package tests.pageobjects.steps.pages;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;

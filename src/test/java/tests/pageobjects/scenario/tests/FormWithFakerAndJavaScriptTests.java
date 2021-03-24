@@ -1,20 +1,15 @@
-package tests.pageobjects;
+package tests.pageobjects.scenario.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.api.Test;
+import tests.pageobjects.scenario.pages.FormWithFakerAndJavaScriptPage;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.open;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 public class FormWithFakerAndJavaScriptTests {
     static FormWithFakerAndJavaScriptPage formWithFakerAndJavaScriptPage;
@@ -74,23 +69,13 @@ public class FormWithFakerAndJavaScriptTests {
     @BeforeAll
     static void setup() {
         Configuration.startMaximized = true;
+    }
+
+    @Test
+    void formWithFakerAndJavaScriptTests() {
         formWithFakerAndJavaScriptPage = open("https://demoqa.com/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
         formWithFakerAndJavaScriptPage.fillForm(userData);
-    }
-
-    @AfterAll
-    static void closeModal() {
+        formWithFakerAndJavaScriptPage.checkData(expectedData);
         formWithFakerAndJavaScriptPage.closeModal();
     }
-
-    @ParameterizedTest
-    @MethodSource("getTableDataAsStream")
-    void formFillTestWithFaker(String key, String actualValue) {
-        assertThat(expectedData.get(key), is(actualValue));
-    }
-
-    public static Stream<Arguments> getTableDataAsStream() {
-        return FormWithFakerAndJavaScriptPage.getTableDataAsStream();
-    }
-
 }

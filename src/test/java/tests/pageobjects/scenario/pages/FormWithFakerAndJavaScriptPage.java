@@ -1,4 +1,4 @@
-package tests.pageobjects.chain;
+package tests.pageobjects.scenario.pages;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
@@ -39,7 +39,7 @@ public class FormWithFakerAndJavaScriptPage {
             dataTable = ".table-responsive tbody tr",
             dataTd = "td";
 
-    public FormWithFakerAndJavaScriptPage fillForm(Map<String, String> userData) {
+    public void fillForm(Map<String, String> userData) {
         formTitleField.shouldHave(text(userData.get("Form Title")));
         firstNameField.setValue(userData.get("First Name"));
         lastNameField.setValue(userData.get("Last Name"));
@@ -63,25 +63,20 @@ public class FormWithFakerAndJavaScriptPage {
         cityField.scrollIntoView(true).click();
         cityField.find(byText(userData.get("City"))).scrollIntoView(true).click();
         submitButton.scrollIntoView(true).click();
-
-        return this;
     }
 
-    public FormWithFakerAndJavaScriptPage closeModal() {
+    public void closeModal() {
         closeModalButton.scrollIntoView(true).click();
         modalWindow.shouldNotBe(visible);
-
-        return this;
     }
 
-    public FormWithFakerAndJavaScriptPage checkData(Map<String, String> expectedData) {
+    public void checkData(Map<String, String> expectedData) {
         Map<String, String> actualData = getMapFromTable(dataTable, dataTd);
 
         for (Map.Entry<String, String> entry : expectedData.entrySet()) {
             assertThat(actualData.get(entry.getKey()), is(entry.getValue()));
         }
 
-        return this;
     }
 
     private static void fillDatePicker(String year, String month, String day) {
