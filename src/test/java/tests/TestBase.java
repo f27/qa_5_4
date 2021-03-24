@@ -1,4 +1,4 @@
-package tests.pageobjects;
+package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;

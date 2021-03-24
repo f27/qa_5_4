@@ -2,7 +2,7 @@ package tests.pageobjects.chain.tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import tests.pageobjects.TestBase;
+import tests.TestBase;
 import tests.pageobjects.chain.pages.FormWithFakerAndJavaScriptPage;
 
 import static com.codeborne.selenide.Selenide.open;
