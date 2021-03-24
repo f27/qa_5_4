@@ -15,9 +15,7 @@ public class TableHelpers {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> data = null;
         try {
-            data = mapper.readValue(json,
-                    new TypeReference<Map<String, String>>() {
-                    });
+            data = mapper.readValue(json, new TypeReference<Map<String, String>>() {});
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
