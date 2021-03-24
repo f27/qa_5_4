@@ -29,7 +29,7 @@ public class TestBase {
             subjects = {"English", "Maths", "Arts", "Accounting"},
             hobbies = {"Sports", "Music"};
 
-    public static Map<String, String> userData = new HashMap<String, String>() {{
+    public static final Map<String, String> userData = new HashMap<String, String>() {{
         put("First Name", faker.name().firstName());
         put("Last Name", faker.name().lastName());
         put("Email", faker.internet().emailAddress());
@@ -48,7 +48,7 @@ public class TestBase {
         put("Thanks Title", "Thanks for submitting the form");
     }};
 
-    public static Map<String, String> expectedData = new HashMap<String, String>() {{
+    public static final Map<String, String> expectedData = new HashMap<String, String>() {{
         put("Student Name", userData.get("First Name") + " " + userData.get("Last Name"));
         put("Student Email", userData.get("Email"));
         put("Gender", userData.get("Gender"));
