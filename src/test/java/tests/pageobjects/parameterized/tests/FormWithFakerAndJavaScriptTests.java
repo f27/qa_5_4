@@ -1,4 +1,4 @@
-package tests.pageobjects.parametrized.tests;
+package tests.pageobjects.parameterized.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import tests.pageobjects.parametrized.pages.FormWithFakerAndJavaScriptPage;
+import tests.pageobjects.parameterized.pages.FormWithFakerAndJavaScriptPage;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
