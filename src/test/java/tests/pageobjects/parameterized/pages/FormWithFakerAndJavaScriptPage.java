@@ -10,10 +10,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static utils.TableUtils.getMapFromTable;
+import static helpers.TableUtils.getMapFromTable;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
@@ -33,9 +32,7 @@ public class FormWithFakerAndJavaScriptPage {
             address = $("#currentAddress"),
             state = $("#state"),
             city = $("#city"),
-            submit = $("#submit"),
-            modal = $(".modal-content"),
-            closeModal = $("#closeLargeModal");
+            submit = $("#submit");
     private static final String
             classOfDay = ".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)",
             dataTable = ".table-responsive tbody tr",
@@ -81,11 +78,6 @@ public class FormWithFakerAndJavaScriptPage {
 
     private static void addHobby(String hobby) {
         hobbiesWrapper.$(byText(hobby)).scrollIntoView(true).click();
-    }
-
-    public void closeModal() {
-        closeModal.scrollIntoView(true).click();
-        modal.shouldNotBe(visible);
     }
 
     public static Stream<Arguments> getTableDataAsStream() {

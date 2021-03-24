@@ -6,12 +6,11 @@ import com.codeborne.selenide.SelenideElement;
 import java.util.Map;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static utils.TableUtils.getMapFromTable;
+import static helpers.TableUtils.getMapFromTable;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
@@ -31,9 +30,7 @@ public class FormWithFakerAndJavaScriptPage {
             addressField = $("#currentAddress"),
             stateField = $("#state"),
             cityField = $("#city"),
-            submitButton = $("#submit"),
-            modalWindow = $(".modal-content"),
-            closeModalButton = $("#closeLargeModal");
+            submitButton = $("#submit");
     private static final String
             classOfDay = ".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)",
             dataTable = ".table-responsive tbody tr",
@@ -102,12 +99,6 @@ public class FormWithFakerAndJavaScriptPage {
 
     public void clickSubmit() {
         submitButton.scrollIntoView(true).click();
-    }
-
-
-    public void closeModal() {
-        closeModalButton.scrollIntoView(true).click();
-        modalWindow.shouldNotBe(visible);
     }
 
     public void checkData(Map<String, String> expectedData) {

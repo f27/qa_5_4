@@ -6,6 +6,8 @@ import tests.TestBase;
 import tests.pageobjects.steps.pages.FormWithFakerAndJavaScriptPage;
 
 import static com.codeborne.selenide.Selenide.open;
+import static tests.TestData.expectedData;
+import static tests.TestData.userData;
 
 @DisplayName("Test steps")
 public class FormWithFakerAndJavaScriptTests extends TestBase {
@@ -13,7 +15,7 @@ public class FormWithFakerAndJavaScriptTests extends TestBase {
 
     @Test
     void formWithFakerAndJavaScriptTests() {
-        formWithFakerAndJavaScriptPage = open("https://demoqa.com/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
+        formWithFakerAndJavaScriptPage = open("/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
         formWithFakerAndJavaScriptPage.checkPageIsLoaded(userData.get("Form Title"));
         formWithFakerAndJavaScriptPage.fillFirstName(userData.get("First Name"));
         formWithFakerAndJavaScriptPage.fillLastName(userData.get("Last Name"));
@@ -29,6 +31,5 @@ public class FormWithFakerAndJavaScriptTests extends TestBase {
         formWithFakerAndJavaScriptPage.fillCity(userData.get("City"));
         formWithFakerAndJavaScriptPage.clickSubmit();
         formWithFakerAndJavaScriptPage.checkData(expectedData);
-        formWithFakerAndJavaScriptPage.closeModal();
     }
 }

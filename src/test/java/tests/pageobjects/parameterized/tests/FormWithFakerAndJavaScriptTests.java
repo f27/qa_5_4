@@ -15,21 +15,17 @@ import java.util.stream.Stream;
 import static com.codeborne.selenide.Selenide.open;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static tests.TestData.expectedData;
+import static tests.TestData.userData;
 
 @DisplayName("Test parameterized")
 public class FormWithFakerAndJavaScriptTests extends TestBase {
     static FormWithFakerAndJavaScriptPage formWithFakerAndJavaScriptPage;
 
     @BeforeAll
-    static void setup() {
-        Configuration.startMaximized = true;
-        formWithFakerAndJavaScriptPage = open("https://demoqa.com/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
+    static void fillForm() {
+        formWithFakerAndJavaScriptPage = open("/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
         formWithFakerAndJavaScriptPage.fillForm(userData);
-    }
-
-    @AfterAll
-    static void closeModal() {
-        formWithFakerAndJavaScriptPage.closeModal();
     }
 
     @ParameterizedTest

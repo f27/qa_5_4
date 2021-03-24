@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static utils.TableUtils.getMapFromTable;
+import static helpers.TableUtils.getMapFromTable;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
@@ -31,9 +31,7 @@ public class FormWithFakerAndJavaScriptPage {
             addressField = $("#currentAddress"),
             stateField = $("#state"),
             cityField = $("#city"),
-            submitButton = $("#submit"),
-            modalWindow = $(".modal-content"),
-            closeModalButton = $("#closeLargeModal");
+            submitButton = $("#submit");
     private static final String
             classOfDay = ".react-datepicker__day--0%s:not(.react-datepicker__day--outside-month)",
             dataTable = ".table-responsive tbody tr",
@@ -63,11 +61,6 @@ public class FormWithFakerAndJavaScriptPage {
         cityField.scrollIntoView(true).click();
         cityField.find(byText(userData.get("City"))).scrollIntoView(true).click();
         submitButton.scrollIntoView(true).click();
-    }
-
-    public void closeModal() {
-        closeModalButton.scrollIntoView(true).click();
-        modalWindow.shouldNotBe(visible);
     }
 
     public void checkData(Map<String, String> expectedData) {

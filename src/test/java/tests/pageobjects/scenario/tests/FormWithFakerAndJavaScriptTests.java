@@ -5,7 +5,11 @@ import org.junit.jupiter.api.Test;
 import tests.TestBase;
 import tests.pageobjects.scenario.pages.FormWithFakerAndJavaScriptPage;
 
+
+
 import static com.codeborne.selenide.Selenide.open;
+import static tests.TestData.expectedData;
+import static tests.TestData.userData;
 
 @DisplayName("Test scenario")
 public class FormWithFakerAndJavaScriptTests extends TestBase {
@@ -13,9 +17,8 @@ public class FormWithFakerAndJavaScriptTests extends TestBase {
 
     @Test
     void formWithFakerAndJavaScriptTests() {
-        formWithFakerAndJavaScriptPage = open("https://demoqa.com/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
+        formWithFakerAndJavaScriptPage = open("/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
         formWithFakerAndJavaScriptPage.fillForm(userData);
         formWithFakerAndJavaScriptPage.checkData(expectedData);
-        formWithFakerAndJavaScriptPage.closeModal();
     }
 }
