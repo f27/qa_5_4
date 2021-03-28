@@ -1,6 +1,5 @@
 package tests.pageobjects.parameterized.tests;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,13 +17,6 @@ import static tests.TestData.userData;
 
 @DisplayName("Test parameterized")
 public class FormWithFakerAndJavaScriptTests extends TestBase {
-    static FormWithFakerAndJavaScriptPage formWithFakerAndJavaScriptPage;
-
-    @BeforeAll
-    static void fillForm() {
-        formWithFakerAndJavaScriptPage = open("/automation-practice-form", FormWithFakerAndJavaScriptPage.class);
-        formWithFakerAndJavaScriptPage.fillForm(userData);
-    }
 
     @ParameterizedTest
     @MethodSource("getTableDataAsStream")
@@ -33,7 +25,9 @@ public class FormWithFakerAndJavaScriptTests extends TestBase {
     }
 
     public static Stream<Arguments> getTableDataAsStream() {
-        return FormWithFakerAndJavaScriptPage.getTableDataAsStream();
+        return open("/automation-practice-form", FormWithFakerAndJavaScriptPage.class)
+                .fillForm(userData)
+                .getTableDataAsStream();
     }
 
 }

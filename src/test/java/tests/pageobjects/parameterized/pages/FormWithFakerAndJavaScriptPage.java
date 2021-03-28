@@ -39,7 +39,7 @@ public class FormWithFakerAndJavaScriptPage {
             dataTd = "td";
 
 
-    public void fillForm(Map<String, String> userData) {
+    public FormWithFakerAndJavaScriptPage fillForm(Map<String, String> userData) {
         formTitle.shouldHave(text(userData.get("Form Title")));
         firstName.setValue(userData.get("First Name"));
         lastName.setValue(userData.get("Last Name"));
@@ -63,6 +63,8 @@ public class FormWithFakerAndJavaScriptPage {
         city.scrollIntoView(true).click();
         city.find(byText(userData.get("City"))).scrollIntoView(true).click();
         submit.scrollIntoView(true).click();
+
+        return this;
     }
 
     private static void fillDatePicker(String year, String month, String day) {
@@ -80,11 +82,11 @@ public class FormWithFakerAndJavaScriptPage {
         hobbiesWrapper.$(byText(hobby)).scrollIntoView(true).click();
     }
 
-    public static Stream<Arguments> getTableDataAsStream() {
+    public Stream<Arguments> getTableDataAsStream() {
         return createList(getMapFromTable(dataTable, dataTd)).stream();
     }
 
-    private static List<Arguments> createList(Map<String, String> data) {
+    private List<Arguments> createList(Map<String, String> data) {
         return data.entrySet()
                 .stream()
                 .map(e -> Arguments.of(e.getKey(), e.getValue()))
