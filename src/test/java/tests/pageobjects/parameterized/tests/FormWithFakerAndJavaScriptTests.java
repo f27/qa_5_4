@@ -10,8 +10,7 @@ import tests.pageobjects.parameterized.pages.FormWithFakerAndJavaScriptPage;
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Selenide.open;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static tests.TestData.expectedData;
 import static tests.TestData.userData;
 
@@ -21,7 +20,7 @@ public class FormWithFakerAndJavaScriptTests extends TestBase {
     @ParameterizedTest
     @MethodSource("getTableDataAsStream")
     void formFillTestWithFaker(String key, String actualValue) {
-        assertThat(expectedData.get(key), is(actualValue));
+        assertThat(expectedData.get(key)).isEqualTo(actualValue);
     }
 
     public static Stream<Arguments> getTableDataAsStream() {

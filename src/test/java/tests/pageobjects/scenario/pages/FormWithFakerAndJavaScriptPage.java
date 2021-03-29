@@ -8,9 +8,8 @@ import static com.codeborne.selenide.ClickOptions.usingJavaScript;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static org.assertj.core.api.Assertions.*;
 import static helpers.TableHelpers.getMapFromTable;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
@@ -64,7 +63,7 @@ public class FormWithFakerAndJavaScriptPage {
         Map<String, String> actualData = getMapFromTable(dataTable, dataTd);
 
         for (Map.Entry<String, String> entry : expectedData.entrySet()) {
-            assertThat(actualData.get(entry.getKey()), is(entry.getValue()));
+            assertThat(actualData.get(entry.getKey())).isEqualTo(entry.getValue());
         }
 
     }
