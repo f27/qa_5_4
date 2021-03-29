@@ -1,16 +1,16 @@
 package tests.pageobjects.chain.pages;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 
 import java.util.Map;
 
+import static com.codeborne.selenide.ClickOptions.usingJavaScript;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static helpers.TableHelpers.getMapFromTable;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static helpers.TableHelpers.getMapFromTable;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
@@ -48,11 +48,9 @@ public class FormWithFakerAndJavaScriptPage {
         for (String subject : userData.get("Subjects").split(", ")) {
             addSubject(subject);
         }
-        Configuration.clickViaJs = true; //Click via javascript for headless
         for (String hobby : userData.get("Hobbies").split(", ")) {
             addHobby(hobby);
         }
-        Configuration.clickViaJs = false;
         pictureUpload.uploadFromClasspath(userData.get("Picture"));
         addressField.setValue(userData.get("Address"));
         stateField.scrollIntoView(true).click();
@@ -86,7 +84,7 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     private static void addHobby(String hobby) {
-        hobbiesWrapper.$(byText(hobby)).scrollIntoView(true).click();
+        hobbiesWrapper.$(byText(hobby)).scrollIntoView(true).click(usingJavaScript());
     }
 
 }

@@ -1,16 +1,16 @@
 package tests.pageobjects.steps.pages;
 
-import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 
 import java.util.Map;
 
+import static com.codeborne.selenide.ClickOptions.usingJavaScript;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static helpers.TableHelpers.getMapFromTable;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static helpers.TableHelpers.getMapFromTable;
 
 public class FormWithFakerAndJavaScriptPage {
     private static final SelenideElement
@@ -72,11 +72,9 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     public void fillHobbies(String hobbies) {
-        Configuration.clickViaJs = true; //Click via javascript for headless
         for (String hobby : hobbies.split(", ")) {
             addHobby(hobby);
         }
-        Configuration.clickViaJs = false;
     }
 
     public void fillPicture(String picture) {
@@ -122,7 +120,7 @@ public class FormWithFakerAndJavaScriptPage {
     }
 
     private static void addHobby(String hobby) {
-        hobbiesWrapper.$(byText(hobby)).scrollIntoView(true).click();
+        hobbiesWrapper.$(byText(hobby)).scrollIntoView(true).click(usingJavaScript());
     }
 
 }
